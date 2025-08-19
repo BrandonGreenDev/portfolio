@@ -56,7 +56,7 @@ const About: React.FC = () => {
             <h2 className="about__title">About Me</h2>
             <div className="about__description">
               <p>
-                I'm a passionate full-stack developer with over 3 years of
+                I'm a passionate full-stack developer with over 5 years of
                 experience creating modern web applications. I love turning
                 complex problems into simple, beautiful, and intuitive
                 solutions.
@@ -77,11 +77,11 @@ const About: React.FC = () => {
 
             <div className="about__stats">
               <div className="stat">
-                <span className="stat__number">50+</span>
+                <span className="stat__number">20+</span>
                 <span className="stat__label">Projects Completed</span>
               </div>
               <div className="stat">
-                <span className="stat__number">3+</span>
+                <span className="stat__number">5+</span>
                 <span className="stat__label">Years Experience</span>
               </div>
               <div className="stat">
