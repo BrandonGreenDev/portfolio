@@ -20,7 +20,7 @@ function App() {
         <div className="container">
           <div className="footer__content">
             <p className="footer__text">
-              © 2024 Your Name. Built with React and TypeScript.
+              © 2024 Brandon Green. Built with React and TypeScript.
             </p>
             <div className="footer__links">
               <a href="#home" className="footer__link">

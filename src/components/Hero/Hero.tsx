@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
                 <div className="code-window__content">
                   <pre className="code">
                     {`const developer = {
-  name: "Your Name",
+  name: "Brandon Green",
   skills: ["React", "TypeScript", "Node.js"],
   passion: "Creating amazing experiences",
   
