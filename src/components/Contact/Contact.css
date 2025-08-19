@@ -203,6 +203,31 @@
   box-shadow: 0 0 0 3px rgba(74, 158, 255, 0.1);
 }
 
+/* Form validation states */
+.form-input--error,
+.form-textarea--error {
+  border-color: #ff5f57;
+  box-shadow: 0 0 0 3px rgba(255, 95, 87, 0.1);
+}
+
+.form-input--valid,
+.form-textarea--valid {
+  border-color: #28ca42;
+  box-shadow: 0 0 0 3px rgba(40, 202, 66, 0.1);
+}
+
+.form-input--error:focus,
+.form-textarea--error:focus {
+  border-color: #ff5f57;
+  box-shadow: 0 0 0 3px rgba(255, 95, 87, 0.2);
+}
+
+.form-input--valid:focus,
+.form-textarea--valid:focus {
+  border-color: #28ca42;
+  box-shadow: 0 0 0 3px rgba(40, 202, 66, 0.2);
+}
+
 .form-textarea {
   min-height: 120px;
   line-height: 1.6;
@@ -242,6 +267,151 @@
 .form-message--error {
   background-color: rgba(255, 95, 87, 0.1);
   border: 1px solid rgba(255, 95, 87, 0.3);
+  color: #ff5f57;
+}
+
+/* Form error messages */
+.form-error {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  color: #ff5f57;
+  font-weight: var(--font-weight-medium);
+}
+
+/* Form hints */
+.form-hint {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-align: right;
+}
+
+/* Button spinner */
+.btn-spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: var(--spacing-sm);
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Form security notice */
+.form-security-notice {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-sm);
+  background-color: rgba(74, 158, 255, 0.05);
+  border: 1px solid rgba(74, 158, 255, 0.1);
+  border-radius: var(--radius-md);
+}
+
+.form-security-notice p {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin: 0;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.form-security-notice svg {
+  flex-shrink: 0;
+  color: var(--color-accent);
+}
+
+/* Honeypot field - ensure it's completely hidden */
+.honeypot-field {
+  position: absolute !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  white-space: nowrap !important;
+}
+
+/* Enhanced form states */
+.contact__form.submitting {
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.contact__form.submitting .form-input,
+.contact__form.submitting .form-textarea {
+  background-color: var(--color-secondary-bg);
+}
+
+/* Form group enhancements */
+.form-group {
+  position: relative;
+}
+
+.form-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.form-label::after {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background-color: #ff5f57;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.form-group:has(.form-input--error) .form-label::after,
+.form-group:has(.form-textarea--error) .form-label::after {
+  opacity: 1;
+}
+
+/* Success state indicator */
+.form-group:has(.form-input--valid) .form-label::before,
+.form-group:has(.form-textarea--valid) .form-label::before {
+  content: "✓";
+  color: #28ca42;
+  font-weight: bold;
+  margin-right: var(--spacing-xs);
+}
+
+/* Improved focus styles for accessibility */
+.form-input:focus-visible,
+.form-textarea:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Character counter styling */
+.form-hint {
+  transition: color var(--transition-fast);
+}
+
+.form-group:has(.form-textarea[value*=""]) .form-hint {
+  color: var(--color-text-secondary);
+}
+
+/* Warning state for character count */
+.form-hint.warning {
+  color: #ffbd2e;
+}
+
+.form-hint.error {
   color: #ff5f57;
 }
 

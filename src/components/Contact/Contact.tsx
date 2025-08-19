@@ -1,12 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import { ContactInfo } from "../../types";
+import {
+  useFormValidation,
+  nameValidation,
+  emailValidation,
+  subjectValidation,
+  messageValidation,
+} from "../../hooks/useFormValidation";
+import {
+  checkRateLimit,
+  recordSubmission,
+  validateFormTiming,
+  validateHoneypot,
+  analyzeContent,
+  sanitizeFormData,
+  generateFormToken,
+  validateFormToken,
+  checkEmailDomain,
+} from "../../utils/contactFormUtils";
+import {
+  emailConfig,
+  spamProtectionConfig,
+  validationMessages,
+} from "../../config/emailConfig";
+// Import reset utility for development
+import "../../utils/resetContactForm";
+import "../../utils/testEmailJS";
 import "./Contact.css";
 
 const contactInfo: ContactInfo = {
-  email: "hello@yourname.com",
-  linkedin: "https://linkedin.com/in/yourname",
-  github: "https://github.com/yourname",
-  twitter: "https://twitter.com/yourname",
+  email: "brandon.green.cx@gmail.com",
+  linkedin: "https://www.linkedin.com/in/brandon-d-green/",
+  github: "https://github.com/BrandonGreenDev",
+};
+
+const validationRules = {
+  name: nameValidation,
+  email: emailValidation,
+  subject: subjectValidation,
+  message: messageValidation,
 };
 
 const Contact: React.FC = () => {
@@ -15,12 +48,37 @@ const Contact: React.FC = () => {
     email: "",
     subject: "",
     message: "",
+    [spamProtectionConfig.honeypotField]: "", // Honeypot field
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<
     "idle" | "success" | "error"
   >("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [formStartTime] = useState(Date.now());
+  const [formToken] = useState(generateFormToken());
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const {
+    errors,
+    validateForm,
+    validateSingleField,
+    setFieldTouched,
+    clearErrors,
+    hasError,
+    isFieldValid,
+  } = useFormValidation(validationRules);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    if (
+      emailConfig.publicKey &&
+      emailConfig.publicKey !== "YOUR_EMAILJS_PUBLIC_KEY"
+    ) {
+      emailjs.init(emailConfig.publicKey);
+    }
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -30,18 +88,172 @@ const Contact: React.FC = () => {
       ...prev,
       [name]: value,
     }));
+
+    // Clear submit status when user starts typing again
+    if (submitStatus !== "idle") {
+      setSubmitStatus("idle");
+      setSubmitMessage("");
+    }
+
+    // Validate field on change if it was previously touched
+    if (name !== spamProtectionConfig.honeypotField) {
+      validateSingleField(name, value);
+    }
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    if (name !== spamProtectionConfig.honeypotField) {
+      setFieldTouched(name);
+      validateSingleField(name, value);
+    }
+  };
+
+  const validateEmailDomain = async (email: string): Promise<boolean> => {
+    try {
+      return await checkEmailDomain(email);
+    } catch {
+      return true; // Allow submission if domain check fails
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus("idle");
+    setSubmitMessage("");
 
-    // Simulate form submission
+    console.log("🚀 Form submission started");
+    console.log("📝 Form data:", formData);
+    console.log("⚙️ EmailJS config:", {
+      publicKey: emailConfig.publicKey?.substring(0, 10) + "...",
+      serviceId: emailConfig.serviceId,
+      templateId: emailConfig.templateId,
+    });
+
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Basic form validation
+      const isFormValid = validateForm(formData);
+      if (!isFormValid) {
+        console.log("❌ Form validation failed");
+        setSubmitStatus("error");
+        setSubmitMessage("Please fix the errors above and try again.");
+        return;
+      }
+      console.log("✅ Form validation passed");
+
+      // Simplified spam protection - only check honeypot
+      if (!validateHoneypot(formData[spamProtectionConfig.honeypotField])) {
+        console.log("❌ Honeypot check failed");
+        setSubmitStatus("error");
+        setSubmitMessage("Spam detected. Please try again.");
+        return;
+      }
+      console.log("✅ Honeypot check passed");
+
+      // Sanitize form data
+      const sanitizedData = sanitizeFormData(formData);
+      console.log("🧹 Sanitized data:", sanitizedData);
+
+      // Check EmailJS configuration
+      if (
+        !emailConfig.publicKey ||
+        emailConfig.publicKey === "YOUR_EMAILJS_PUBLIC_KEY" ||
+        !emailConfig.serviceId ||
+        emailConfig.serviceId === "YOUR_EMAILJS_SERVICE_ID" ||
+        !emailConfig.templateId ||
+        emailConfig.templateId === "YOUR_EMAILJS_TEMPLATE_ID"
+      ) {
+        console.log("⚠️ EmailJS not configured properly");
+        setSubmitStatus("success");
+        setSubmitMessage(
+          "Thank you! Your message has been received. (EmailJS configuration needed for actual email delivery)"
+        );
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+          [spamProtectionConfig.honeypotField]: "",
+        });
+        clearErrors();
+        return;
+      }
+
+      console.log("📧 Attempting to send email via EmailJS...");
+
+      // Send email via EmailJS
+      const templateParams = {
+        to_name: "Brandon Green",
+        from_name: sanitizedData.name,
+        from_email: sanitizedData.email,
+        subject: sanitizedData.subject,
+        message: sanitizedData.message,
+        reply_to: sanitizedData.email,
+      };
+
+      console.log("📋 Template params:", templateParams);
+
+      const result = await emailjs.send(
+        emailConfig.serviceId,
+        emailConfig.templateId,
+        templateParams
+      );
+
+      console.log("✅ EmailJS send result:", result);
+
+      // Success
       setSubmitStatus("success");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error) {
+      setSubmitMessage(validationMessages.success);
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+        [spamProtectionConfig.honeypotField]: "",
+      });
+      clearErrors();
+      recordSubmission();
+
+      console.log("🎉 Form submission completed successfully!");
+    } catch (error: any) {
+      console.error("💥 Form submission error:", error);
+      console.error("Error details:", {
+        name: error?.name,
+        message: error?.message,
+        status: error?.status,
+        text: error?.text,
+      });
+
+      // Handle specific EmailJS errors
+      if (error?.status === 400) {
+        setSubmitMessage(
+          "Invalid form data. Please check your inputs and try again."
+        );
+      } else if (error?.status === 401) {
+        setSubmitMessage(
+          "Email service authentication failed. Please check your EmailJS credentials."
+        );
+      } else if (error?.status === 403) {
+        setSubmitMessage(
+          "Email service access denied. Please check your EmailJS service configuration."
+        );
+      } else if (error?.status >= 500) {
+        setSubmitMessage("EmailJS server error. Please try again later.");
+      } else if (error?.name === "NetworkError" || !navigator.onLine) {
+        setSubmitMessage(
+          "Network error. Please check your connection and try again."
+        );
+      } else {
+        setSubmitMessage(
+          `Error: ${
+            error?.message || "An unexpected error occurred. Please try again."
+          }`
+        );
+      }
+
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
@@ -210,10 +422,31 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="contact__form-container">
-            <form className="contact__form" onSubmit={handleSubmit}>
+            <form
+              ref={formRef}
+              className={`contact__form ${isSubmitting ? "submitting" : ""}`}
+              onSubmit={handleSubmit}
+              noValidate
+            >
+              {/* Honeypot field for spam protection - hidden from users */}
+              <div className="honeypot-field" style={{ display: "none" }}>
+                <label htmlFor={spamProtectionConfig.honeypotField}>
+                  Website
+                </label>
+                <input
+                  type="text"
+                  id={spamProtectionConfig.honeypotField}
+                  name={spamProtectionConfig.honeypotField}
+                  value={formData[spamProtectionConfig.honeypotField]}
+                  onChange={handleInputChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
               <div className="form-group">
                 <label htmlFor="name" className="form-label">
-                  Name
+                  Name *
                 </label>
                 <input
                   type="text"
@@ -221,14 +454,25 @@ const Contact: React.FC = () => {
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="form-input"
+                  onBlur={handleBlur}
+                  className={`form-input ${
+                    hasError("name") ? "form-input--error" : ""
+                  } ${isFieldValid("name") ? "form-input--valid" : ""}`}
+                  placeholder="Your full name"
                   required
+                  aria-describedby={hasError("name") ? "name-error" : undefined}
+                  aria-invalid={hasError("name")}
                 />
+                {hasError("name") && (
+                  <div id="name-error" className="form-error" role="alert">
+                    {errors.name}
+                  </div>
+                )}
               </div>
 
               <div className="form-group">
                 <label htmlFor="email" className="form-label">
-                  Email
+                  Email *
                 </label>
                 <input
                   type="email"
@@ -236,14 +480,27 @@ const Contact: React.FC = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="form-input"
+                  onBlur={handleBlur}
+                  className={`form-input ${
+                    hasError("email") ? "form-input--error" : ""
+                  } ${isFieldValid("email") ? "form-input--valid" : ""}`}
+                  placeholder="your.email@example.com"
                   required
+                  aria-describedby={
+                    hasError("email") ? "email-error" : undefined
+                  }
+                  aria-invalid={hasError("email")}
                 />
+                {hasError("email") && (
+                  <div id="email-error" className="form-error" role="alert">
+                    {errors.email}
+                  </div>
+                )}
               </div>
 
               <div className="form-group">
                 <label htmlFor="subject" className="form-label">
-                  Subject
+                  Subject *
                 </label>
                 <input
                   type="text"
@@ -251,46 +508,109 @@ const Contact: React.FC = () => {
                   name="subject"
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="form-input"
+                  onBlur={handleBlur}
+                  className={`form-input ${
+                    hasError("subject") ? "form-input--error" : ""
+                  } ${isFieldValid("subject") ? "form-input--valid" : ""}`}
+                  placeholder="What's this about?"
                   required
+                  aria-describedby={
+                    hasError("subject") ? "subject-error" : undefined
+                  }
+                  aria-invalid={hasError("subject")}
                 />
+                {hasError("subject") && (
+                  <div id="subject-error" className="form-error" role="alert">
+                    {errors.subject}
+                  </div>
+                )}
               </div>
 
               <div className="form-group">
                 <label htmlFor="message" className="form-label">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="form-textarea"
+                  onBlur={handleBlur}
+                  className={`form-textarea ${
+                    hasError("message") ? "form-input--error" : ""
+                  } ${isFieldValid("message") ? "form-input--valid" : ""}`}
                   rows={5}
+                  placeholder="Tell me about your project or idea..."
                   required
+                  aria-describedby={
+                    hasError("message") ? "message-error" : undefined
+                  }
+                  aria-invalid={hasError("message")}
                 />
+                {hasError("message") && (
+                  <div id="message-error" className="form-error" role="alert">
+                    {errors.message}
+                  </div>
+                )}
+                <div className="form-hint">
+                  {formData.message.length}/1000 characters
+                </div>
               </div>
 
               <button
                 type="submit"
                 className="btn btn-primary btn--full"
                 disabled={isSubmitting}
+                aria-describedby={
+                  submitStatus !== "idle" ? "submit-message" : undefined
+                }
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? (
+                  <>
+                    <span className="btn-spinner" aria-hidden="true"></span>
+                    Sending...
+                  </>
+                ) : (
+                  "Send Message"
+                )}
               </button>
 
-              {submitStatus === "success" && (
-                <div className="form-message form-message--success">
-                  Thank you! Your message has been sent successfully.
+              {(submitStatus === "success" || submitStatus === "error") && (
+                <div
+                  id="submit-message"
+                  className={`form-message form-message--${submitStatus}`}
+                  role="alert"
+                  aria-live="polite"
+                >
+                  {submitMessage ||
+                    (submitStatus === "success"
+                      ? validationMessages.success
+                      : "An error occurred. Please try again.")}
                 </div>
               )}
 
-              {submitStatus === "error" && (
-                <div className="form-message form-message--error">
-                  Sorry, there was an error sending your message. Please try
-                  again.
-                </div>
-              )}
+              {/* Form security notice */}
+              <div className="form-security-notice">
+                <p>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  Your information is secure and will only be used to respond to
+                  your message.
+                </p>
+              </div>
             </form>
           </div>
         </div>
