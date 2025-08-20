@@ -1,4 +1,5 @@
 import React from "react";
+import CalcDemoImg from "../../assets/CalcDemo.JPG";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -7,23 +8,14 @@ import "./Projects.css";
 const projects: Project[] = [
   {
     id: "1",
-    title: "E-Commerce Platform",
-    description:
-      "A full-stack e-commerce solution with React, Node.js, and PostgreSQL",
+    title: "A Simple Calculator",
+    description: "A simple calculator really.. what did you expect",
     longDescription:
-      "Built a complete e-commerce platform featuring user authentication, product catalog, shopping cart, payment integration, and admin dashboard. Implemented responsive design and optimized for performance.",
-    technologies: [
-      "React",
-      "TypeScript",
-      "Node.js",
-      "PostgreSQL",
-      "Stripe",
-      "Tailwind CSS",
-    ],
-    imageUrl:
-      "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=E-Commerce+Platform",
-    demoUrl: "https://demo-ecommerce.example.com",
-    codeUrl: "https://github.com/username/ecommerce-platform",
+      "I wanted to see if I could take an image of a calcuator and embed logic into it as if you were actually using a physical calculator!",
+    technologies: ["React", "TypeScript", "Tailwind CSS"],
+    imageUrl: CalcDemoImg,
+    demoUrl: "https://brandongreendev.github.io/anothercalculator/",
+    codeUrl: "https://github.com/BrandonGreenDev/anothercalculator",
     featured: true,
   },
   {
