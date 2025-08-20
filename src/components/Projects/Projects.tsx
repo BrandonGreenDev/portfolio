@@ -1,5 +1,6 @@
 import React from "react";
 import CalcDemoImg from "../../assets/CalcDemo.JPG";
+import toDoDemo from "../../assets/todo.JPG";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -24,10 +25,9 @@ const projects: Project[] = [
     description:
       "A collaborative task management application with real-time updates",
     longDescription:
-      "Developed a team collaboration tool with drag-and-drop functionality, real-time notifications, file attachments, and project analytics. Features include team management and progress tracking.",
-    technologies: ["React", "Socket.io", "Express", "MongoDB", "Material-UI"],
-    imageUrl:
-      "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=Task+Manager",
+      "Developed a simple to-do app that mimics needed behaviors such as sectional filtering, date-time filtering, important task filtering.",
+    technologies: ["React", "TypeScript", "LocalStorage", "Material-UI"],
+    imageUrl: toDoDemo,
     demoUrl: "https://demo-taskmanager.example.com",
     codeUrl: "https://github.com/username/task-manager",
     featured: true,
