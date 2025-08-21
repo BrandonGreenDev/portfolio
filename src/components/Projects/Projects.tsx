@@ -28,8 +28,8 @@ const projects: Project[] = [
       "Developed a simple to-do app that mimics needed behaviors such as sectional filtering, date-time filtering, important task filtering.",
     technologies: ["React", "TypeScript", "LocalStorage", "Material-UI"],
     imageUrl: toDoDemo,
-    demoUrl: "https://demo-taskmanager.example.com",
-    codeUrl: "https://github.com/username/task-manager",
+    demoUrl: "https://brandongreendev.github.io/ThingsAlternative/",
+    codeUrl: "https://github.com/BrandonGreenDev/ThingsAlternative",
     featured: true,
   },
   {
