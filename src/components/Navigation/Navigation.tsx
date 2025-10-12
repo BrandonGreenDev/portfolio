@@ -1,6 +1,7 @@
 import React from "react";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { NavigationItem } from "../../types";
+import logo from "../../assets/logo.png";
 import "./Navigation.css";
 
 const navigationItems: NavigationItem[] = [
@@ -31,9 +32,7 @@ const Navigation: React.FC = () => {
               handleNavClick("#home");
             }}
           >
-            <div className="logo-placeholder">
-              <span>LOGO</span>
-            </div>
+            <img src={logo} alt="BG Logo" className="navigation__logo-img" />
           </a>
         </div>
 

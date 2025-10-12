@@ -4,30 +4,30 @@ import "./About.css";
 
 const skills: Skill[] = [
   // Frontend
-  { name: "React", category: "frontend", proficiency: 5 },
-  { name: "TypeScript", category: "frontend", proficiency: 5 },
-  { name: "JavaScript", category: "frontend", proficiency: 5 },
-  { name: "HTML5", category: "frontend", proficiency: 5 },
-  { name: "CSS3", category: "frontend", proficiency: 5 },
+  { name: "React", category: "frontend", proficiency: 4 },
+  { name: "TypeScript", category: "frontend", proficiency: 4 },
+  { name: "JavaScript", category: "frontend", proficiency: 4 },
+  { name: "HTML5", category: "frontend", proficiency: 4 },
+  { name: "CSS3", category: "frontend", proficiency: 4 },
   { name: "Sass/SCSS", category: "frontend", proficiency: 4 },
   { name: "Tailwind CSS", category: "frontend", proficiency: 4 },
   { name: "Next.js", category: "frontend", proficiency: 4 },
   { name: "Vue.js", category: "frontend", proficiency: 3 },
 
   // Backend
-  { name: "Node.js", category: "backend", proficiency: 4 },
-  { name: "Express.js", category: "backend", proficiency: 4 },
-  { name: "Python", category: "backend", proficiency: 4 },
-  { name: "PostgreSQL", category: "backend", proficiency: 4 },
+  { name: "Node.js", category: "backend", proficiency: 3 },
+  { name: "Express.js", category: "backend", proficiency: 3 },
+  { name: "Python", category: "backend", proficiency: 3 },
+  { name: "PostgreSQL", category: "backend", proficiency: 3 },
   { name: "MongoDB", category: "backend", proficiency: 3 },
-  { name: "GraphQL", category: "backend", proficiency: 3 },
-  { name: "REST APIs", category: "backend", proficiency: 5 },
+  { name: "GraphQL", category: "backend", proficiency: 2 },
+  { name: "REST APIs", category: "backend", proficiency: 4 },
 
   // Tools
   { name: "Git", category: "tools", proficiency: 5 },
-  { name: "Docker", category: "tools", proficiency: 3 },
+  { name: "Docker", category: "tools", proficiency: 2 },
   { name: "AWS", category: "tools", proficiency: 3 },
-  { name: "Webpack", category: "tools", proficiency: 4 },
+  { name: "Webpack", category: "tools", proficiency: 2 },
   { name: "Jest", category: "tools", proficiency: 4 },
   { name: "Figma", category: "tools", proficiency: 4 },
 ];
