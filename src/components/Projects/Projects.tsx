@@ -1,6 +1,7 @@
 import React from "react";
 import CalcDemoImg from "../../assets/CalcDemo.JPG";
 import toDoDemo from "../../assets/todo.JPG";
+import windowsXPImg from "../../assets/windowsxp.JPG";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -9,6 +10,26 @@ import "./Projects.css";
 const projects: Project[] = [
   {
     id: "1",
+    title: "Windows XP emulated in React",
+    description:
+      "A responsive weather application with location-based forecasts",
+    longDescription:
+      "Created a weather dashboard that provides current conditions and 7-day forecasts. Features include geolocation, search functionality, favorite locations, and weather alerts.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Node.js",
+      "Tailwind CSS",
+      "CSS Grid",
+    ],
+    imageUrl: windowsXPImg,
+    demoUrl: "https://windows-xp-orpin.vercel.app/",
+    codeUrl: "https://github.com/username/weather-dashboard",
+    featured: true,
+  },
+  {
+    id: "2",
     title: "A Simple Calculator",
     description: "A simple calculator really.. what did you expect",
     longDescription:
@@ -20,7 +41,7 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: "2",
+    id: "3",
     title: "Task Management App",
     description:
       "A collaborative task management application with real-time updates",
@@ -32,26 +53,7 @@ const projects: Project[] = [
     codeUrl: "https://github.com/BrandonGreenDev/ThingsAlternative",
     featured: true,
   },
-  {
-    id: "3",
-    title: "Weather Dashboard",
-    description:
-      "A responsive weather application with location-based forecasts",
-    longDescription:
-      "Created a weather dashboard that provides current conditions and 7-day forecasts. Features include geolocation, search functionality, favorite locations, and weather alerts.",
-    technologies: [
-      "React",
-      "TypeScript",
-      "OpenWeather API",
-      "Chart.js",
-      "CSS Grid",
-    ],
-    imageUrl:
-      "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=Weather+Dashboard",
-    demoUrl: "https://demo-weather.example.com",
-    codeUrl: "https://github.com/username/weather-dashboard",
-    featured: false,
-  },
+
   {
     id: "4",
     title: "Portfolio Website",
@@ -77,7 +79,7 @@ const projects: Project[] = [
       "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=Analytics+Dashboard",
     demoUrl: "https://demo-analytics.example.com",
     codeUrl: "https://github.com/username/social-analytics",
-    featured: true,
+    featured: false,
   },
   {
     id: "6",
