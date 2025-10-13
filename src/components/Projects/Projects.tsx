@@ -3,6 +3,7 @@ import CalcDemoImg from "../../assets/CalcDemo.JPG";
 import toDoDemo from "../../assets/todo.JPG";
 import windowsXPImg from "../../assets/windowsxp.JPG";
 import cryptoImg from "../../assets/crypto.JPG";
+import lavaImg from "../../assets/lava.JPG";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -12,10 +13,9 @@ const projects: Project[] = [
   {
     id: "1",
     title: "Windows XP emulated in React",
-    description:
-      "A responsive weather application with location-based forecasts",
+    description: "this is a front end UI experience of old school windows",
     longDescription:
-      "Created a weather dashboard that provides current conditions and 7-day forecasts. Features include geolocation, search functionality, favorite locations, and weather alerts.",
+      "Enjoy the nostalgia with many functioning windows apps and features. we have folder navigation, text editor, file saving, file explorer, start menu, DOS games such as DOOM, minesweeper, and Solitaire. classic windows sounds and more! Click around and have fun!",
     technologies: [
       "React",
       "TypeScript",
@@ -77,41 +77,29 @@ const projects: Project[] = [
     imageUrl: toDoDemo,
     demoUrl: "https://brandongreendev.github.io/ThingsAlternative/",
     codeUrl: "https://github.com/BrandonGreenDev/ThingsAlternative",
-    featured: true,
+    featured: false,
   },
 
   {
     id: "5",
-    title: "Social Media Analytics",
-    description: "A data visualization dashboard for social media metrics",
-    longDescription:
-      "Built a comprehensive analytics dashboard that aggregates data from multiple social media platforms. Features interactive charts, custom date ranges, and automated reporting.",
-    technologies: ["React", "D3.js", "Python", "FastAPI", "Redis", "Docker"],
-    imageUrl:
-      "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=Analytics+Dashboard",
-    demoUrl: "https://demo-analytics.example.com",
-    codeUrl: "https://github.com/username/social-analytics",
-    featured: false,
-  },
-  {
-    id: "6",
-    title: "Recipe Finder App",
+    title: "Lava Wall",
     description:
-      "A mobile-first recipe discovery app with ingredient-based search",
+      "this is a not so simple lava lamp emulator but on your computer screen!",
     longDescription:
-      "Developed a recipe discovery application that allows users to search by ingredients, dietary restrictions, and cuisine types. Includes meal planning, shopping lists, and nutritional information.",
+      "this lava wall application uses Vector math utility functions for 2D calculations, Class constructors for object initialization, Instance methods for object behavior,Arrow functions for event handling and preserving context, and more!",
     technologies: [
-      "React Native",
-      "Expo",
-      "Firebase",
-      "Spoonacular API",
-      "AsyncStorage",
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "Vite",
+      "ES Modules",
+      "WebGL",
+      "Canvas API",
     ],
-    imageUrl:
-      "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=Recipe+Finder",
-    demoUrl: "https://demo-recipes.example.com",
-    codeUrl: "https://github.com/username/recipe-finder",
-    featured: false,
+    imageUrl: lavaImg,
+    demoUrl: "https://lava-wall.vercel.app/",
+    codeUrl: "https://github.com/BrandonGreenDev/lava-wall",
+    featured: true,
   },
 ];
 
