@@ -2,6 +2,7 @@ import React from "react";
 import CalcDemoImg from "../../assets/CalcDemo.JPG";
 import toDoDemo from "../../assets/todo.JPG";
 import windowsXPImg from "../../assets/windowsxp.JPG";
+import cryptoImg from "../../assets/crypto.JPG";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -38,6 +39,31 @@ const projects: Project[] = [
     imageUrl: CalcDemoImg,
     demoUrl: "https://brandongreendev.github.io/anothercalculator/",
     codeUrl: "https://github.com/BrandonGreenDev/anothercalculator",
+    featured: false,
+  },
+  {
+    id: "4",
+    title: "crypto Currency Portfolio/Tracker",
+    description:
+      "A modern crypto currency tracker and portfolio management app",
+    longDescription:
+      "This project is just a small showcase of beautiful UI/UX design and animations and back end integration with a third party API to fetch real-time crypto data.",
+    technologies: [
+      "React",
+      "TypeScript",
+      "JSX/TSX",
+      "Vite",
+      "Tailwind CSS",
+      "PostCSS",
+      "Autoprefixer",
+      "Axios",
+      "Recharts",
+      "ESLint",
+      "Prettier",
+    ],
+    imageUrl: cryptoImg,
+    demoUrl: "https://bg-dev-cryptotracker.vercel.app/",
+    codeUrl: "https://github.com/BrandonGreenDev/cryptotracker",
     featured: true,
   },
   {
@@ -54,20 +80,6 @@ const projects: Project[] = [
     featured: true,
   },
 
-  {
-    id: "4",
-    title: "Portfolio Website",
-    description:
-      "A modern, responsive portfolio website built with React and TypeScript",
-    longDescription:
-      "Designed and developed a clean, minimalist portfolio website featuring smooth animations, responsive design, and optimized performance. Includes project showcase, contact forms, and blog integration.",
-    technologies: ["React", "TypeScript", "CSS3", "Framer Motion", "Netlify"],
-    imageUrl:
-      "https://via.placeholder.com/400x250/1a1f2e/4a9eff?text=Portfolio+Website",
-    demoUrl: "https://portfolio.example.com",
-    codeUrl: "https://github.com/username/portfolio",
-    featured: false,
-  },
   {
     id: "5",
     title: "Social Media Analytics",
