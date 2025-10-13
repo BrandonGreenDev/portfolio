@@ -3,7 +3,7 @@ import CalcDemoImg from "../../assets/CalcDemo.JPG";
 import toDoDemo from "../../assets/todo.JPG";
 import windowsXPImg from "../../assets/windowsxp.JPG";
 import cryptoImg from "../../assets/crypto.JPG";
-import lavaImg from "../../assets/lava.JPG";
+import lavaImg from "../../assets/lava.png";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
