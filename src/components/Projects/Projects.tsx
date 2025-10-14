@@ -4,6 +4,7 @@ import toDoDemo from "../../assets/todo.JPG";
 import windowsXPImg from "../../assets/windowsxp.JPG";
 import cryptoImg from "../../assets/crypto.JPG";
 import lavaImg from "../../assets/lava.png";
+import bwImg from "../../assets/bw.JPG";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -100,6 +101,19 @@ const projects: Project[] = [
     demoUrl: "https://lava-wall.vercel.app/",
     codeUrl: "https://github.com/BrandonGreenDev/lava-wall",
     featured: true,
+  },
+  {
+    id: "6",
+    title: "Beautiful Weather",
+    description:
+      "as a mostly UX/UI designer I had to showcase at least one weather app",
+    longDescription:
+      "Everyone and their mother can write a weather app but I wanted to focus on modern design and making it beautiful. This weather app uses meteo api to fetch real time weather data and display it in a clean and modern way.",
+    technologies: ["TypeScript", "HTML5", "CSS3", "Vite", "Open-Meteo API"],
+    imageUrl: bwImg,
+    demoUrl: "https://beautiful-weather-one.vercel.app/",
+    codeUrl: "https://github.com/BrandonGreenDev/beautiful-weather",
+    featured: false,
   },
 ];
 
