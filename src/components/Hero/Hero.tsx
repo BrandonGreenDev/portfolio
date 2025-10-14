@@ -34,8 +34,10 @@ const Hero: React.FC = () => {
             </h1>
             <p className="hero__description">
               I create responsive, performant web applications using modern
-              technologies. Specializing in React, TypeScript, and Node.js with
-              a focus on clean code and exceptional user experiences.
+              technologies. Specializing in React, Vite, TypeScript, Next.js,
+              Express.js, Tailwind CSS, and APIs. I focus on creating a strong
+              user experience for the average user, always staying up to date
+              with the latest technologies.
             </p>
 
             <div className="hero__actions">
@@ -69,7 +71,7 @@ const Hero: React.FC = () => {
                   <pre className="code">
                     {`const developer = {
   name: "Brandon Green",
-  skills: ["React", "TypeScript", "Node.js"],
+  skills: ["React", "Vite", "TypeScript", "Node.js", Next.js", "Express.js", "Tailwind CSS"],
   passion: "Creating amazing experiences",
   
   buildProject: () => {
