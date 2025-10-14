@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
                   <pre className="code">
                     {`const developer = {
   name: "Brandon Green",
-  skills: ["React", "Vite", "TypeScript", "Node.js", Next.js", "Express.js", "Tailwind CSS"],
+  skills: ["Angular","React", "Vite", "TypeScript", "JavaScript", "Node.js", Next.js", "Express.js", "Tailwind CSS", "Ruby", "Rails", "Python", "Django", "SQL", "NoSQL", "GraphQL", "REST APIs", "Git", "Docker", "CI/CD"],
   passion: "Creating amazing experiences",
   
   buildProject: () => {
