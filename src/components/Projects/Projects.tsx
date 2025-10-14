@@ -4,7 +4,7 @@ import toDoDemo from "../../assets/todo.JPG";
 import windowsXPImg from "../../assets/windowsxp.JPG";
 import cryptoImg from "../../assets/crypto.JPG";
 import lavaImg from "../../assets/lava.png";
-import bwImg from "../../assets/bw.JPG";
+import bwImg from "../../assets/bw.png";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
