@@ -43,7 +43,7 @@ const projects: Project[] = [
     featured: false,
   },
   {
-    id: "4",
+    id: "3",
     title: "crypto Currency Portfolio/Tracker",
     description:
       "A modern crypto currency tracker and portfolio management app",
@@ -68,7 +68,7 @@ const projects: Project[] = [
     featured: true,
   },
   {
-    id: "3",
+    id: "4",
     title: "Task Management App",
     description:
       "A collaborative task management application with real-time updates",
@@ -113,7 +113,7 @@ const projects: Project[] = [
     imageUrl: bwImg,
     demoUrl: "https://beautiful-weather-one.vercel.app/",
     codeUrl: "https://github.com/BrandonGreenDev/beautiful-weather",
-    featured: false,
+    featured: true,
   },
 ];
 
