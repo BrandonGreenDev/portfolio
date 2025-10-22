@@ -115,6 +115,18 @@ const projects: Project[] = [
     codeUrl: "https://github.com/BrandonGreenDev/beautiful-weather",
     featured: true,
   },
+  {
+    id: "7",
+    title: "Bored APIs!",
+    description: "I just wanted to showcase using API's with RxJS in Angular",
+    longDescription:
+      "This multiple API's to showcase fetching data from different endpoints and displaying it in a clean and modern way. There are some fun components and real life use cases for this app.",
+    technologies: ["TypeScript", "Angular", "HTML5", "CSS3", "RxJS"],
+    imageUrl: bwImg,
+    demoUrl: "https://https://bg-bored-app.vercel.app/",
+    codeUrl: "https://github.com/BrandonGreenDev/bored",
+    featured: true,
+  },
 ];
 
 const Projects: React.FC = () => {
