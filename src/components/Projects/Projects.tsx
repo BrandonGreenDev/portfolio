@@ -5,6 +5,7 @@ import windowsXPImg from "../../assets/windowsxp.JPG";
 import cryptoImg from "../../assets/crypto.JPG";
 import lavaImg from "../../assets/lava.png";
 import bwImg from "../../assets/bw.png";
+import boredImg from "../../assets/bored.png";
 import ProjectCard from "./ProjectCard";
 import { Project } from "../../types";
 import "./Projects.css";
@@ -122,10 +123,10 @@ const projects: Project[] = [
     longDescription:
       "This multiple API's to showcase fetching data from different endpoints and displaying it in a clean and modern way. There are some fun components and real life use cases for this app.",
     technologies: ["TypeScript", "Angular", "HTML5", "CSS3", "RxJS"],
-    imageUrl: bwImg,
+    imageUrl: boredImg,
     demoUrl: "https://https://bg-bored-app.vercel.app/",
     codeUrl: "https://github.com/BrandonGreenDev/bored",
-    featured: true,
+    featured: false,
   },
 ];
 
