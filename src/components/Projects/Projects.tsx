@@ -7,6 +7,7 @@ import lavaImg from "../../assets/lava.png";
 import bwImg from "../../assets/bw.png";
 import boredImg from "../../assets/bored.png";
 import ProjectCard from "./ProjectCard";
+import bookImg from "../../assets/bookImg.png"
 import { Project } from "../../types";
 import "./Projects.css";
 
@@ -103,6 +104,7 @@ const projects: Project[] = [
     codeUrl: "https://github.com/BrandonGreenDev/lava-wall",
     featured: true,
   },
+
   {
     id: "6",
     title: "Beautiful Weather",
@@ -114,7 +116,7 @@ const projects: Project[] = [
     imageUrl: bwImg,
     demoUrl: "https://beautiful-weather-one.vercel.app/",
     codeUrl: "https://github.com/BrandonGreenDev/beautiful-weather",
-    featured: true,
+    featured: false,
   },
   {
     id: "7",
@@ -127,6 +129,27 @@ const projects: Project[] = [
     demoUrl: "https://https://bg-bored-app.vercel.app/",
     codeUrl: "https://github.com/BrandonGreenDev/bored",
     featured: false,
+  },
+   {
+    id: "8",
+    title: "Book Explorer",
+    description:
+      "Find your favorite book!",
+    longDescription:
+      "This is a simple book explorer using the public library api. You can search, favorite, and filter any book in this api!",
+    technologies: [
+      "TypeScript",
+      "HTML5",
+      "CSS3",
+      "Angular 20.0",
+      "Angular Signals",
+      "RxJS",
+      "API",
+    ],
+    imageUrl: bookImg,
+    demoUrl: "  https://bg-book-explorer.vercel.app/search",
+    codeUrl: "https://github.com/BrandonGreenDev/BookExplorer",
+    featured: true,
   },
 ];
 
