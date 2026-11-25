@@ -2,6 +2,8 @@ import React from "react";
 import Navigation from "./components/Navigation/Navigation";
 import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
+import Experience from "./components/Experience/Experience";
+import Skills from "./components/Skills/Skills";
 import Projects from "./components/Projects/Projects";
 import Contact from "./components/Contact/Contact";
 import "./App.css";
@@ -13,6 +15,8 @@ function App() {
       <main>
         <Hero />
         <About />
+        <Experience />
+        <Skills />
         <Projects />
         <Contact />
       </main>
@@ -20,7 +24,7 @@ function App() {
         <div className="container">
           <div className="footer__content">
             <p className="footer__text">
-              © 2024 Brandon Green. Built with React and TypeScript.
+              © {new Date().getFullYear()} Brandon Green. Built with React and TypeScript.
             </p>
             <div className="footer__links">
               <a href="#home" className="footer__link">
@@ -28,6 +32,12 @@ function App() {
               </a>
               <a href="#about" className="footer__link">
                 About
+              </a>
+              <a href="#experience" className="footer__link">
+                Experience
+              </a>
+              <a href="#skills" className="footer__link">
+                Skills
               </a>
               <a href="#projects" className="footer__link">
                 Projects

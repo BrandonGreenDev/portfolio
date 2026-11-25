@@ -25,6 +25,5 @@ export interface ContactInfo {
 
 export interface Skill {
   name: string;
-  category: "frontend" | "backend" | "tools" | "other";
-  proficiency?: number; // 1-5 scale
+  category: "frontend" | "backend" | "toolsCloud" | "servicenow" | "a11y";
 }

@@ -1,16 +1,10 @@
 import React from "react";
+import { profile } from "../../data/profile";
 import "./Hero.css";
 
 const Hero: React.FC = () => {
   const handleScrollToProjects = () => {
     const element = document.querySelector("#projects");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  const handleScrollToContact = () => {
-    const element = document.querySelector("#contact");
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
@@ -26,18 +20,18 @@ const Hero: React.FC = () => {
       <div className="container">
         <div className="hero__content">
           <div className="hero__text">
-            <p className="hero__subtitle">Full-Stack Developer</p>
+            <p className="hero__subtitle">Front-End Developer · ServiceNow</p>
             <h1 className="hero__title">
               Building Modern
               <br />
               <span className="hero__title-accent">Web Experiences</span>
             </h1>
             <p className="hero__description">
-              I create responsive, performant web applications using modern
-              technologies. Specializing in React, Vite, TypeScript, Next.js,
-              Express.js, Tailwind CSS, and APIs. I focus on creating a strong
-              user experience for the average user, always staying up to date
-              with the latest technologies.
+              I build accessible, responsive interfaces in React, Angular and
+              TypeScript, from reusable component libraries to apps that meet
+              WCAG. Today I'm a Technical Support Engineer at ServiceNow,
+              debugging enterprise platforms across UI Builder, Service Portal
+              and Now Assist.
             </p>
 
             <div className="hero__actions">
@@ -47,12 +41,13 @@ const Hero: React.FC = () => {
               >
                 View My Work
               </button>
-              <button
+              <a
+                href={profile.resumeUrl}
+                download
                 className="btn btn-secondary"
-                onClick={handleScrollToContact}
               >
-                Get In Touch
-              </button>
+                Download Resume
+              </a>
             </div>
           </div>
 
@@ -71,12 +66,21 @@ const Hero: React.FC = () => {
                   <pre className="code">
                     {`const developer = {
   name: "Brandon Green",
-  skills: ["Angular","React", "Vite", "TypeScript", "JavaScript", "Node.js", Next.js", "Express.js", "Tailwind CSS", "Ruby", "Rails", "Python", "Django", "SQL", "NoSQL", "GraphQL", "REST APIs", "Git", "Docker", "CI/CD"],
-  passion: "Creating amazing experiences",
-  
-  buildProject: () => {
-    return "Something awesome!";
-  }
+  skills: [
+    "Angular", "React", "Vite",
+    "TypeScript", "JavaScript",
+    "Node.js", "Next.js",
+    "Express.js", "Tailwind CSS",
+    "Ruby", "Rails", "Python",
+    "Django", "SQL", "NoSQL",
+    "GraphQL", "REST APIs", "Git",
+    "Docker", "CI/CD", "ServiceNow",
+  ],
+  certifications: [
+    "ServiceNow CSA",
+    "ServiceNow CAD",
+  ],
+  focus: "Accessible UIs",
 };`}
                   </pre>
                 </div>

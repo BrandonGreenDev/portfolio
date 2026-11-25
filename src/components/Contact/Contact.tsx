@@ -7,12 +7,13 @@ import {
   validationMessages,
   templateParams,
 } from "../../config/emailConfig";
+import { profile } from "../../data/profile";
 import "./Contact.css";
 
 const contactInfo: ContactInfo = {
-  email: "brandon.green.cx@gmail.com",
-  linkedin: "https://www.linkedin.com/in/brandon-d-green/",
-  github: "https://github.com/BrandonGreenDev",
+  email: profile.email,
+  linkedin: profile.linkedin,
+  github: profile.github,
 };
 
 const Contact: React.FC = () => {
@@ -105,8 +106,8 @@ const Contact: React.FC = () => {
         <div className="contact__header">
           <h2 className="contact__title">Get In Touch</h2>
           <p className="contact__subtitle">
-            Have a project in mind or want to discuss opportunities? I'd love to
-            hear from you.
+            Hiring for a front-end, full-stack or ServiceNow developer role? I'd
+            love to hear from you.
           </p>
         </div>
 
@@ -115,15 +116,14 @@ const Contact: React.FC = () => {
             <div className="contact__card">
               <h3 className="contact__card-title">Let's Connect</h3>
               <p className="contact__card-description">
-                Feel free to reach out through the form or connect with me on
-                social media.
+                Send a message through the form, email me directly, or find me
+                on LinkedIn and GitHub.
               </p>
 
               <div className="contact__details">
                 <a
                   href={`mailto:${contactInfo.email}`}
                   className="contact__detail"
-                  aria-label="Send email"
                 >
                   <div className="contact__detail-icon">
                     <svg

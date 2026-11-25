@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useScrollPosition } from "../../hooks/useScrollPosition";
 import { NavigationItem } from "../../types";
 import logo from "../../assets/logo.png";
@@ -7,14 +7,18 @@ import "./Navigation.css";
 const navigationItems: NavigationItem[] = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Contact", href: "#contact" },
 ];
 
 const Navigation: React.FC = () => {
   const { isScrolled } = useScrollPosition(50);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavClick = (href: string) => {
+    setIsMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -32,11 +36,16 @@ const Navigation: React.FC = () => {
               handleNavClick("#home");
             }}
           >
-            <img src={logo} alt="BG Logo" className="navigation__logo-img" />
+            <img src={logo} alt="Brandon Green, back to top" className="navigation__logo-img" />
           </a>
         </div>
 
-        <ul className="navigation__menu">
+        <ul
+          id="primary-navigation"
+          className={`navigation__menu ${
+            isMenuOpen ? "navigation__menu--open" : ""
+          }`}
+        >
           {navigationItems.map((item) => (
             <li key={item.label} className="navigation__item">
               <a
@@ -69,7 +78,10 @@ const Navigation: React.FC = () => {
         {/* Mobile Menu Button */}
         <button
           className="navigation__mobile-toggle"
-          aria-label="Toggle mobile menu"
+          aria-label="Menu"
+          aria-expanded={isMenuOpen}
+          aria-controls="primary-navigation"
+          onClick={() => setIsMenuOpen((open) => !open)}
         >
           <span></span>
           <span></span>

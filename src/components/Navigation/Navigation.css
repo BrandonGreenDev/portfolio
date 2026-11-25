@@ -13,7 +13,7 @@
 
 .navigation--scrolled {
   height: var(--nav-height-shrunk);
-  background-color: rgba(10, 14, 26, 0.98);
+  background-color: var(--color-primary-bg);
 }
 
 .navigation__container {
@@ -157,6 +157,24 @@
     display: none;
   }
 
+  .navigation__menu--open {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md);
+    background-color: var(--color-primary-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .navigation__menu--open .navigation__link {
+    display: block;
+    padding: var(--spacing-md) 0;
+  }
+
   .navigation__cta {
     display: none;
   }
@@ -225,4 +243,9 @@
 /* Smooth transitions for all navigation elements */
 .navigation * {
   transition: all var(--transition-normal);
+}
+
+.navigation__mobile-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }

@@ -129,8 +129,17 @@
 
 .hero__actions {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   flex-wrap: wrap;
+}
+
+.hero__actions .btn {
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.hero__actions .btn:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 .hero__visual {
@@ -203,6 +212,7 @@
   color: var(--color-text-primary);
   margin: 0;
   white-space: pre-wrap;
+  text-align: left;
   animation: typewriter 2s steps(40) 1s both;
 }
 
@@ -320,6 +330,11 @@
   .hero__title {
     font-size: var(--font-size-5xl);
   }
+
+  /* The stacked layout is taller than the viewport; the hint would overlap content */
+  .hero__scroll-indicator {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -389,7 +404,7 @@
 
   .hero__actions .btn {
     width: 100%;
-    max-width: 200px;
+    max-width: 260px;
   }
 
   .code-window {

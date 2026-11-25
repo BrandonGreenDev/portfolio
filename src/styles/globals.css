@@ -106,29 +106,39 @@ a:hover {
   color: var(--color-accent);
 }
 
+/* Keep anchored section headings clear of the fixed nav */
+section[id] {
+  scroll-margin-top: var(--nav-height-shrunk);
+}
+
 /* Button Styles */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-md) var(--spacing-xl);
+  font-family: inherit;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-medium);
+  line-height: 1.2;
   text-decoration: none;
-  border: none;
+  border: 2px solid transparent;
   border-radius: var(--radius-lg);
   cursor: pointer;
   transition: all var(--transition-normal);
   white-space: nowrap;
 }
 
+/* #1f6fd6 / #1a5fb8 keep white text above the WCAG AA 4.5:1 ratio */
 .btn-primary {
-  background-color: var(--color-accent);
+  background-color: #1f6fd6;
+  border-color: #1f6fd6;
   color: var(--color-text-primary);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-accent-hover);
+  background-color: #1a5fb8;
+  border-color: #1a5fb8;
   transform: translateY(-2px);
 }
 
