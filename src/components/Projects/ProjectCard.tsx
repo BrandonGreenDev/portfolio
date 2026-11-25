@@ -13,7 +13,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <div className={`project-card ${featured ? "project-card--featured" : ""}`}>
       <div className="project-card__image">
-        <img src={project.imageUrl} alt={project.title} loading="lazy" />
+        <img src={project.imageUrl} alt={`Screenshot of ${project.title}`} loading="lazy" />
         <div className="project-card__overlay">
           <div className="project-card__links">
             {project.demoUrl && (
