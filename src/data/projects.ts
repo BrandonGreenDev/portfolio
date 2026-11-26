@@ -112,17 +112,17 @@ export const projects: Project[] = [
     id: "5",
     title: "Lava Wall",
     description:
-      "A lava lamp simulation that runs right on your computer screen.",
+      "A full-screen, interactive lava lamp you can stir, slice and heat by hand.",
     longDescription:
-      "A lava lamp simulation rendered with WebGL and the Canvas API, driven by custom 2D vector math utilities. Written in object-oriented TypeScript, with classes modeling each element and arrow-function event handlers preserving context.",
+      "An interactive lava lamp in raw WebGL with no runtime dependencies: glossy metaball blobs heat, rise, cool and sink, and merge or split as you stir and swipe through them. Any color, adjustable settings, keyboard shortcuts, and reduced-motion support.",
     technologies: [
       "TypeScript",
-      "HTML5",
-      "CSS3",
       "Vite",
-      "ES Modules",
       "WebGL",
       "Canvas API",
+      "Pointer Events",
+      "HTML5",
+      "CSS3",
     ],
     imageUrl: lavaImg,
     demoUrl: "https://lava-wall.vercel.app/",
